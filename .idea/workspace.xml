@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="489b3417-0746-4acb-9532-b5c4dec04e26" name="Changes" comment="And finished!">
+    <list default="true" id="489b3417-0746-4acb-9532-b5c4dec04e26" name="Changes" comment="And finished! part 2">
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,13 +77,30 @@
       <option name="project" value="LOCAL" />
       <updated>1705170315027</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="And finished!">
+      <option name="closed" value="true" />
+      <created>1705170346904</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705170346904</updated>
+    </task>
+    <task id="LOCAL-00004" summary="And finished! part 2">
+      <option name="closed" value="true" />
+      <created>1705170396209</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705170396209</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="some nicely printed output etc." />
     <MESSAGE value="And finished!" />
-    <option name="LAST_COMMIT_MESSAGE" value="And finished!" />
+    <MESSAGE value="And finished! part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="And finished! part 2" />
   </component>
 </project>

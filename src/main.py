@@ -1,19 +1,18 @@
 import os
 
-def deleteDuplicateFiles(dir):
-	for (currDir, subDirs, files) in os.walk(dir):
-		# print(currDir, ":", sep = "")
-		# for d in sorted(subDirs):
+def deleteDuplicateFiles(directory):
+	for (currentDirectory, subdirectories, files) in os.walk(directory):
+		# print(currentDirectory, ":", sep = "")
+		# for d in sorted(subdirectories):
 		# 	print("\t", d, sep = "")
 		for f in sorted(files):
-			print(currDir + os.sep + f, sep = "")
-			name, ext = os.path.splitext(f)
+			print(currentDirectory + os.sep + f, sep = "")
+			name, extension = os.path.splitext(f)
 			if name.endswith(" (2)"):
-				origName = name.removesuffix(" (2)")
-				# print("origName:", origName)
-				if origName + ext in files and abs(os.stat(currDir + os.sep + origName + ext).st_mtime - os.stat(currDir + os.sep + f).st_mtime) <= 120 and os.stat(currDir + os.sep + origName + ext).st_size == os.stat(currDir + os.sep + f).st_size:	# Could use math.isclose(1000, 1004, abs_tol = 5).
+				originalName = name.removesuffix(" (2)")
+				if originalName + extension in files and abs(os.stat(currentDirectory + os.sep + originalName + extension).st_mtime - os.stat(currentDirectory + os.sep + f).st_mtime) <= 120 and os.stat(currentDirectory + os.sep + originalName + extension).st_size == os.stat(currentDirectory + os.sep + f).st_size:	# Could use math.isclose(1000, 1004, abs_tol = 5).
 					print("\tDeleting...", end = "")
-					os.remove(currDir + os.sep + f)
+					os.remove(currentDirectory + os.sep + f)
 					print(" done.")
 
 if __name__ == "__main__":
