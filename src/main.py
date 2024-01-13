@@ -14,7 +14,7 @@ def deleteDuplicateFiles(dir):
 				if origName + ext in files and abs(os.stat(currDir + os.sep + origName + ext).st_mtime - os.stat(currDir + os.sep + f).st_mtime) <= 120 and os.stat(currDir + os.sep + origName + ext).st_size == os.stat(currDir + os.sep + f).st_size:	# Could use math.isclose(1000, 1004, abs_tol = 5).
 					print("\tDeleting...", end = "")
 					os.remove(currDir + os.sep + f)
-					print(" done")
+					print(" done.")
 
 if __name__ == "__main__":
 	deleteDuplicateFiles("/home/punit/doc/_Office/Mobileum")
