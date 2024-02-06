@@ -1,6 +1,8 @@
+import io
 import os
 import sqlite3
 import time
+import lzma
 
 def deleteDuplicateFiles(directory):
 	for (currentDirectory, subdirectories, files) in os.walk(directory):
@@ -18,13 +20,12 @@ def deleteDuplicateFiles(directory):
 					print(" done.")
 
 def deleteSubsets(directory):
-		for (currentDirectory, subdirectories, files) in os.walk(directory):
-			for f in sorted(files):
-				if f.endswith(".sqlite"):
-					historyFile = open("../var/history_" + f + ".txt", "w")
-					print(currentDirectory + os.sep + f + ":")
+	for (currentDirectory, subdirectories, files) in os.walk(directory):
+		for f in sorted(files):
+			if f.endswith(".sqlite"):
+				with open("../var/history.sql", "a") as historyFile:
 					connection = sqlite3.connect(currentDirectory + os.sep + f)
-					cursor = connection.cursor()
+					# cursor = connection.cursor()
 					# for table in ["moz_anno_attributes", "moz_annos", "moz_bookmarks", "moz_bookmarks_deleted", "moz_historyvisits", "moz_inputhistory", "moz_items_annos", "moz_keywords", "moz_meta", "moz_origins", "moz_places"]:
 					# 	print("SELECT * FROM pragma_table_info(" + table + ");")
 					# 	rows = cursor.execute("SELECT * FROM pragma_table_info(\"" + table + "\");")
@@ -35,17 +36,29 @@ def deleteSubsets(directory):
 					# 	open("../var/" + table + ".txt", "a").write(", ".join([col[0] for col in rows.description]))
 					# 	open("../var/" + table + ".txt", "a").write(")\n")
 					# 	open("../var/" + table + ".txt", "a").write("\n".join(map(str, rows.fetchall())))
-					rows = cursor.execute("SELECT url, title, visit_date, place_id FROM moz_historyvisits, moz_places WHERE moz_historyvisits.place_id = moz_places.id;")
-					# open("../var/history.txt", "w").write("\n".join(map(str, rows.fetchall())))
-					for row in rows.fetchall():
-						historyFile.write("| ")
-						for index, cell in enumerate(row):
-							if index != 2:
-								historyFile.write(str(cell) + " | ")
-							elif index == 2:
-								historyFile.write(time.ctime(cell // 1000000) + " | ")
-						historyFile.write("\n")
-					break
+					# rows = cursor.execute("SELECT url, title, visit_date FROM moz_historyvisits, moz_places WHERE moz_historyvisits.place_id = moz_places.id;")
+					# # open("../var/history.txt", "w").write("\n".join(map(str, rows.fetchall())))
+					# for row in rows.fetchall():
+					# 	historyFile.write("| ")
+					# 	for index, cell in enumerate(row):
+					# 		if index != 2:
+					# 			historyFile.write(str(cell) + " | ")
+					# 		elif index == 2:
+					# 			historyFile.write(time.ctime(cell // 1000000) + " | ")
+					# 	historyFile.write("\n")
+					print(currentDirectory + os.sep + f + ":")
+					for line in connection.iterdump():
+						line = line.strip().replace("\n", "$$$$")
+						# historyFile.seek(0, 0)
+						# if line not in historyFile.readlines():
+						# 	historyFile.seek(0, 2)
+						# 	historyFile.write("%s\n" % line)
+						historyFile.write("%s\n" % line)
+					connection.close()
+					os.system("sort ../var/history.sql | uniq > ../var/history_cleaned.sql ; mv ../var/history_cleaned.sql ../var/history.sql")
+					data = open(currentDirectory + os.sep + f, "rb")
+					with lzma.open(currentDirectory + os.sep + f + ".xz", "wb") as xZFile:
+						xZFile.write(data.read())
 
 if __name__ == "__main__":
 	# deleteDuplicateFiles("/home/punit/doc/_Office/Mobileum")
