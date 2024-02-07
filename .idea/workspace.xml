@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="489b3417-0746-4acb-9532-b5c4dec04e26" name="Changes" comment="deleteSubsets in progress, tested with one file.">
+    <list default="true" id="489b3417-0746-4acb-9532-b5c4dec04e26" name="Changes" comment="Able to uniquify files now.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
@@ -111,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707045335715</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Able to uniquify files now.">
+      <option name="closed" value="true" />
+      <created>1707232988566</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707232988566</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -121,6 +129,7 @@
     <MESSAGE value="And finished! part 2" />
     <MESSAGE value="Refactored some names." />
     <MESSAGE value="deleteSubsets in progress, tested with one file." />
-    <option name="LAST_COMMIT_MESSAGE" value="deleteSubsets in progress, tested with one file." />
+    <MESSAGE value="Able to uniquify files now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Able to uniquify files now." />
   </component>
 </project>

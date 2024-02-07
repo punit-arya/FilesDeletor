@@ -23,7 +23,7 @@ def deleteSubsets(directory):
 	for (currentDirectory, subdirectories, files) in os.walk(directory):
 		for f in sorted(files):
 			if f.endswith(".sqlite"):
-				with open("../var/history.sql", "a") as historyFile:
+				with open("history.sql", "a") as historyFile:
 					connection = sqlite3.connect(currentDirectory + os.sep + f)
 					# cursor = connection.cursor()
 					# for table in ["moz_anno_attributes", "moz_annos", "moz_bookmarks", "moz_bookmarks_deleted", "moz_historyvisits", "moz_inputhistory", "moz_items_annos", "moz_keywords", "moz_meta", "moz_origins", "moz_places"]:
@@ -37,7 +37,7 @@ def deleteSubsets(directory):
 					# 	open("../var/" + table + ".txt", "a").write(")\n")
 					# 	open("../var/" + table + ".txt", "a").write("\n".join(map(str, rows.fetchall())))
 					# rows = cursor.execute("SELECT url, title, visit_date FROM moz_historyvisits, moz_places WHERE moz_historyvisits.place_id = moz_places.id;")
-					# # open("../var/history.txt", "w").write("\n".join(map(str, rows.fetchall())))
+					# # open("history.txt", "w").write("\n".join(map(str, rows.fetchall())))
 					# for row in rows.fetchall():
 					# 	historyFile.write("| ")
 					# 	for index, cell in enumerate(row):
@@ -55,7 +55,7 @@ def deleteSubsets(directory):
 						# 	historyFile.write("%s\n" % line)
 						historyFile.write("%s\n" % line)
 					connection.close()
-					os.system("sort ../var/history.sql | uniq > ../var/history_cleaned.sql ; mv ../var/history_cleaned.sql ../var/history.sql")
+					os.system("sort history.sql | uniq > history_cleaned.sql ; mv history_cleaned.sql history.sql")
 					data = open(currentDirectory + os.sep + f, "rb")
 					with lzma.open(currentDirectory + os.sep + f + ".xz", "wb") as xZFile:
 						xZFile.write(data.read())
